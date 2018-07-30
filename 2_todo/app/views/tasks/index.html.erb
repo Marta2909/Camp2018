@@ -1,0 +1,31 @@
+<h1>Todos</h1>
+
+<h3>Aktualne zadanie:</h3>
+<p>
+  <%= @actual_task.try(:subject) %>:
+  <ul>
+    <li>status: <%= @actual_task.status %></li>
+    <li>data rozpoczęcia: <%= format_date @actual_task.try(:created_at) %></li>
+  </ul>
+</p>
+<h3>Zakończone zadania:</h3>
+<table>
+  <thead>
+    <th>Zadanie</th>
+    <th>Status</th>
+    <th>Data utworzenia</th>
+    <th>Data zakończenia</th>
+  </thead>
+  <tbody>
+    <% @tasks.each do |todo| %>
+    <tr>
+      <td><%= todo.subject %></td>
+      <td><%= todo.status %></td>
+      <td><%= format_date todo.created_at %></td>
+      <td><%= format_date todo == @tasks.first ? @actual_task.created_at : @tasks[@tasks.index(todo)-1].created_at %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'Dodaj zadanie', new_task_path %></p>

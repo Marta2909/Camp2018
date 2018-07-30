@@ -1,0 +1,10 @@
+<h1>Nowe zadanie</h1>
+<%= form_for @task do |f| %>
+<blockquote>
+  <%= f.label :subject %>
+  <%= f.text_field :subject %>
+</blockquote>
+<%= f.submit 'Dodaj zadanie' %>
+<% end %>
+
+</p><%= link_to 'Wróć do listy', :back %></p>
