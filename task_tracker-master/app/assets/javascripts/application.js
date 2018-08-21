@@ -54,16 +54,19 @@ $(function(){
 
   $('.delete-sign').on('click', function(event) {
     event.preventDefault();
-    let tri = $(this).closest('tr');
-    let row_index = $(this).closest('tr')[0].rowIndex;
+    $tri = $(this).closest('tr');
+    let row_index = $tri[0].dataset.taskId;
 
     fetch("/tasks/" + row_index, {
-      method: 'delete',
+      headers: new Headers({
+        'X-CSRF-Token': Rails.csrfToken()
+      }),
+      method: 'delete'
     })
     .then(response => {
-     tri.remove();
+     $tri.remove();
     })
-    // .catch(err => console.log(err));
+    .catch(err => console.log(err));
   });
 
 

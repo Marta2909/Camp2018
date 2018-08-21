@@ -28,7 +28,7 @@
   <div class="cell small-12 medium-6 medium-offset-3 large-8 large-offset-2">
     <table class="hover">
       <% @tasks.each do |task| %>
-        <tr>
+        <tr data-task-id="<%= task.id %>">
           <td>
             <%= task.subject %>
           </td>
@@ -38,7 +38,6 @@
           <td class="delete-sign">
             x
           </td>
-          <td class="delete-sign"><%= link_to 'Destroy', task, method: :delete, id: task.id, class: 'delete-sign', data: { confirm: 'Are you Sure?', remote: true } %> </td>
         </tr>
       <% end %>
     </table>
