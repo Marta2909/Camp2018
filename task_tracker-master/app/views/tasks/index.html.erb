@@ -35,9 +35,12 @@
           <td>
             <%= l task.created_at %>
           </td>
+          <td class="delete-sign">
+            x
+          </td>
+          <td class="delete-sign"><%= link_to 'Destroy', task, method: :delete, id: task.id, class: 'delete-sign', data: { confirm: 'Are you Sure?', remote: true } %> </td>
         </tr>
       <% end %>
     </table>
   </div>
 </div>
-

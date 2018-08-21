@@ -51,4 +51,20 @@ $(function(){
       $('#query').val(row.html())
       $('#query').closest('form').submit()
   })
+
+  $('.delete-sign').on('click', function(event) {
+    event.preventDefault();
+    let tri = $(this).closest('tr');
+    let row_index = $(this).closest('tr')[0].rowIndex;
+
+    fetch("/tasks/" + row_index, {
+      method: 'delete',
+    })
+    .then(response => {
+     tri.remove();
+    })
+    // .catch(err => console.log(err));
+  });
+
+
 })

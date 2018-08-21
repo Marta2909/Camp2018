@@ -18,7 +18,21 @@ class TasksController < ApplicationController
       redirect_to tasks_path
     else
       @tasks = Task.all
-      render action: :index
+      render action: :index, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    respond_to do |format|
+      format.json { head :no_content }
+      format.html { render nothing: true }
+      format.js   { render layout: false }
     end
   end
 
